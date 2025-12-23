@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
 import LeadershipCard from '@/components/LeadershipCard'
-import { Mail, Send } from 'lucide-react'
+import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 const leadership = [
   {
@@ -65,12 +66,46 @@ export default function Contact() {
     subject: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null
+    message: string
+  }>({ type: null, message: '' })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Create mailto link with form data
-    const mailtoLink = `mailto:vefasimon01@gmail.com?subject=${encodeURIComponent(formData.subject || 'Contact from Future Youth CLT Website')}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`
-    window.location.href = mailtoLink
+    setIsSubmitting(true)
+    setSubmitStatus({ type: null, message: '' })
+
+    try {
+      const { error } = await supabase
+        .from('messages')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          },
+        ])
+
+      if (error) {
+        throw error
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent successfully! We will get back to you soon.',
+      })
+      setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch (error: any) {
+      setSubmitStatus({
+        type: 'error',
+        message: error.message || 'Failed to send message. Please try again.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -156,14 +191,32 @@ export default function Contact() {
                     required
                   />
                 </div>
+                {submitStatus.type && (
+                  <div
+                    className={`p-4 rounded-lg flex items-center gap-2 ${
+                      submitStatus.type === 'success'
+                        ? 'bg-primary-green-medium/20 border border-primary-green-medium text-primary-green-light'
+                        : 'bg-red-500/20 border border-red-500 text-red-400'
+                    }`}
+                  >
+                    {submitStatus.type === 'success' ? (
+                      <CheckCircle className="w-5 h-5" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5" />
+                    )}
+                    <span>{submitStatus.message}</span>
+                  </div>
+                )}
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full px-6 py-3 bg-primary-green-medium hover:bg-primary-green-light 
+                           disabled:opacity-50 disabled:cursor-not-allowed
                            text-black font-semibold rounded-lg transition-colors duration-200 
                            flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

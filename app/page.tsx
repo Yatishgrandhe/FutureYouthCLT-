@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Logo from '@/components/Logo'
+import Image from 'next/image'
 import AnimatedSection from '@/components/AnimatedSection'
 import LeadershipCard from '@/components/LeadershipCard'
 
@@ -27,7 +27,16 @@ export default function Home() {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
         <AnimatedSection>
-          <Logo width={300} height={300} className="mx-auto mb-8" />
+          <div className="flex justify-center items-center mb-8">
+            <Image
+              src="/image.png"
+              alt="Future Youth CLT"
+              width={400}
+              height={400}
+              priority
+              className="object-contain mx-auto"
+            />
+          </div>
           <h1 className="text-5xl md:text-7xl font-display text-primary-green-light mb-4">
             FUTURE YOUTH
           </h1>
