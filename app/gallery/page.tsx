@@ -5,67 +5,67 @@ import AnimatedSection from '@/components/AnimatedSection'
 import { Image as ImageIcon, X } from 'lucide-react'
 import Image from 'next/image'
 
-// Placeholder images from Picsum Photos API - replace these with actual images later
+// Placeholder images from Unsplash Source API - themed to match captions
 const galleryImages = [
   {
     id: 1,
-    src: 'https://picsum.photos/seed/community-event/800/600',
+    src: 'https://source.unsplash.com/800x600/?community,gathering,people',
     alt: 'Community Event',
     title: 'Community Event',
     description: 'Our first community gathering',
   },
   {
     id: 2,
-    src: 'https://picsum.photos/seed/leadership-workshop/800/600',
+    src: 'https://source.unsplash.com/800x600/?leadership,workshop,team',
     alt: 'Leadership Workshop',
     title: 'Leadership Workshop',
     description: 'Developing leadership skills',
   },
   {
     id: 3,
-    src: 'https://picsum.photos/seed/networking-session/800/600',
+    src: 'https://source.unsplash.com/800x600/?networking,business,meeting',
     alt: 'Networking Session',
     title: 'Networking Session',
     description: 'Connecting with peers',
   },
   {
     id: 4,
-    src: 'https://picsum.photos/seed/community-service/800/600',
+    src: 'https://source.unsplash.com/800x600/?volunteer,community,service',
     alt: 'Community Service',
     title: 'Community Service',
     description: 'Giving back to the community',
   },
   {
     id: 5,
-    src: 'https://picsum.photos/seed/team-building/800/600',
+    src: 'https://source.unsplash.com/800x600/?team,building,group',
     alt: 'Team Building',
     title: 'Team Building',
     description: 'Building stronger connections',
   },
   {
     id: 6,
-    src: 'https://picsum.photos/seed/youth-summit/800/600',
+    src: 'https://source.unsplash.com/800x600/?youth,summit,conference',
     alt: 'Youth Summit',
     title: 'Youth Summit',
     description: 'Empowering the next generation',
   },
   {
     id: 7,
-    src: 'https://picsum.photos/seed/workshop-series/800/600',
+    src: 'https://source.unsplash.com/800x600/?workshop,learning,education',
     alt: 'Workshop Series',
     title: 'Workshop Series',
     description: 'Learning and growing together',
   },
   {
     id: 8,
-    src: 'https://picsum.photos/seed/community-outreach/800/600',
+    src: 'https://source.unsplash.com/800x600/?outreach,helping,community',
     alt: 'Community Outreach',
     title: 'Community Outreach',
     description: 'Making a positive impact',
   },
   {
     id: 9,
-    src: 'https://picsum.photos/seed/annual-gathering/800/600',
+    src: 'https://source.unsplash.com/800x600/?celebration,event,gathering',
     alt: 'Annual Gathering',
     title: 'Annual Gathering',
     description: 'Celebrating our achievements',
