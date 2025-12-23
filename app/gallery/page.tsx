@@ -5,67 +5,67 @@ import AnimatedSection from '@/components/AnimatedSection'
 import { Image as ImageIcon, X } from 'lucide-react'
 import Image from 'next/image'
 
-// Placeholder images from Unsplash Source API - themed to match captions
+// Placeholder images using Unsplash official API with specific image IDs that match themes
 const galleryImages = [
   {
     id: 1,
-    src: 'https://source.unsplash.com/800x600/?community,gathering,people',
+    src: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&h=600&fit=crop',
     alt: 'Community Event',
     title: 'Community Event',
     description: 'Our first community gathering',
   },
   {
     id: 2,
-    src: 'https://source.unsplash.com/800x600/?leadership,workshop,team',
+    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
     alt: 'Leadership Workshop',
     title: 'Leadership Workshop',
     description: 'Developing leadership skills',
   },
   {
     id: 3,
-    src: 'https://source.unsplash.com/800x600/?networking,business,meeting',
+    src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop',
     alt: 'Networking Session',
     title: 'Networking Session',
     description: 'Connecting with peers',
   },
   {
     id: 4,
-    src: 'https://source.unsplash.com/800x600/?volunteer,community,service',
+    src: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop',
     alt: 'Community Service',
     title: 'Community Service',
     description: 'Giving back to the community',
   },
   {
     id: 5,
-    src: 'https://source.unsplash.com/800x600/?team,building,group',
+    src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop',
     alt: 'Team Building',
     title: 'Team Building',
     description: 'Building stronger connections',
   },
   {
     id: 6,
-    src: 'https://source.unsplash.com/800x600/?youth,summit,conference',
+    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop',
     alt: 'Youth Summit',
     title: 'Youth Summit',
     description: 'Empowering the next generation',
   },
   {
     id: 7,
-    src: 'https://source.unsplash.com/800x600/?workshop,learning,education',
+    src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop',
     alt: 'Workshop Series',
     title: 'Workshop Series',
     description: 'Learning and growing together',
   },
   {
     id: 8,
-    src: 'https://source.unsplash.com/800x600/?outreach,helping,community',
+    src: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop',
     alt: 'Community Outreach',
     title: 'Community Outreach',
     description: 'Making a positive impact',
   },
   {
     id: 9,
-    src: 'https://source.unsplash.com/800x600/?celebration,event,gathering',
+    src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop',
     alt: 'Annual Gathering',
     title: 'Annual Gathering',
     description: 'Celebrating our achievements',
