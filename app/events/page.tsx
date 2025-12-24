@@ -1,7 +1,43 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import AnimatedSection from '@/components/AnimatedSection'
-import { Calendar, MapPin, Clock } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import { Calendar, MapPin, Clock, Users } from 'lucide-react'
+
+interface Event {
+  id: string
+  title: string
+  description: string | null
+  event_date: string | null
+  location: string | null
+  created_at: string
+}
 
 export default function Events() {
+  const [events, setEvents] = useState<Event[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    loadEvents()
+  }, [])
+
+  const loadEvents = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('events')
+        .select('*')
+        .order('event_date', { ascending: true })
+
+      if (error) throw error
+      setEvents(data || [])
+    } catch (error) {
+      console.error('Failed to load events:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
@@ -22,24 +58,74 @@ export default function Events() {
             <h2 className="text-3xl md:text-4xl font-display text-primary-green-light mb-8 text-center">
               Upcoming Events
             </h2>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
-                            border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
-                <div className="text-center py-12">
-                  <Calendar className="w-16 h-16 text-primary-green-medium mx-auto mb-4" />
-                  <h3 className="text-2xl font-semibold text-primary-green-light mb-4">
-                    Stay Tuned!
-                  </h3>
-                  <p className="text-gray-300 mb-6 leading-relaxed">
-                    We're planning exciting events for 2025. Check back soon for updates on 
-                    upcoming workshops, networking sessions, community service projects, and more.
-                  </p>
-                  <p className="text-gray-400 text-sm">
-                    Follow us on social media or sign up to receive event notifications.
-                  </p>
+            {loading ? (
+              <div className="text-center py-12">
+                <p className="text-gray-400">Loading events...</p>
+              </div>
+            ) : events.length === 0 ? (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
+                              border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
+                  <div className="text-center py-12">
+                    <Calendar className="w-16 h-16 text-primary-green-medium mx-auto mb-4" />
+                    <h3 className="text-2xl font-semibold text-primary-green-light mb-4">
+                      Stay Tuned!
+                    </h3>
+                    <p className="text-gray-300 mb-6 leading-relaxed">
+                      We're planning exciting events for 2025. Check back soon for updates on 
+                      upcoming workshops, networking sessions, community service projects, and more.
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      Follow us on social media or sign up to receive event notifications.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-w-4xl mx-auto space-y-4">
+                {events.map((event) => (
+                  <div
+                    key={event.id}
+                    className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
+                              border border-primary-green-medium/20 rounded-lg p-6 hover:border-primary-green-medium/50 
+                              transition-all"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-semibold text-primary-green-light mb-2">
+                          {event.title}
+                        </h3>
+                        {event.description && (
+                          <p className="text-gray-300 mb-3">{event.description}</p>
+                        )}
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                          {event.event_date && (
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              {new Date(event.event_date).toLocaleDateString()}
+                            </div>
+                          )}
+                          {event.location && (
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4" />
+                              {event.location}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <Link
+                      href={`/events/rsvp?eventId=${event.id}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary-green-medium hover:bg-primary-green-light 
+                               text-black font-semibold rounded-lg transition-colors"
+                    >
+                      <Users className="w-5 h-5" />
+                      RSVP for this Event
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
         </AnimatedSection>
 
