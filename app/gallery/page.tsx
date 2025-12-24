@@ -16,10 +16,10 @@ const galleryImages = [
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
-    alt: 'Leadership Workshop',
-    title: 'Leadership Workshop',
-    description: 'Developing leadership skills',
+    src: '/leadership-meeting.png',
+    alt: 'Leadership Collaboration Meeting',
+    title: 'Leadership Collaboration Meeting',
+    description: 'Our leadership team working together on projects and initiatives',
   },
   {
     id: 3,
