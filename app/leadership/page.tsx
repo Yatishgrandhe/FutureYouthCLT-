@@ -91,13 +91,20 @@ export default function Leadership() {
                 Want to Get in Touch?
               </h2>
               <p className="text-gray-300 mb-6">
-                Feel free to reach out to any of our leadership team members via email. 
-                We're always happy to hear from you!
+                Reach out to us via email. We're always happy to hear from you!
               </p>
               <a
-                href="/contact"
+                href="mailto:cltfutureyouth@gmail.com"
                 className="inline-block px-6 py-3 bg-primary-green-medium hover:bg-primary-green-light 
-                         text-black font-semibold rounded-lg transition-colors duration-200"
+                         text-black font-semibold rounded-lg transition-colors duration-200 mb-4"
+              >
+                cltfutureyouth@gmail.com
+              </a>
+              <br />
+              <a
+                href="/contact"
+                className="inline-block px-6 py-3 border-2 border-primary-green-medium hover:border-primary-green-light 
+                         text-primary-green-light hover:text-primary-green-medium font-semibold rounded-lg transition-colors duration-200"
               >
                 Visit Contact Page
               </a>

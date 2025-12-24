@@ -2,62 +2,8 @@
 
 import { useState } from 'react'
 import AnimatedSection from '@/components/AnimatedSection'
-import LeadershipCard from '@/components/LeadershipCard'
 import { Mail, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
-
-const leadership = [
-  {
-    name: 'Vefa Simon (Allie)',
-    role: 'President',
-    email: 'vefasimon01@gmail.com',
-  },
-  {
-    name: 'Manu Panta',
-    role: 'Vice President',
-    email: 'manasvipanta444@gmail.com',
-  },
-  {
-    name: 'Nia Tilokani',
-    role: 'Secretary',
-    email: 'tilokaninia@gmail.com',
-  },
-  {
-    name: 'Yatish Grandhe',
-    role: 'Secretary',
-    email: 'Yatish.grandhe@gmail.com',
-  },
-  {
-    name: 'Anurag NC',
-    role: 'Event Manager',
-    email: 'anuragnc2@gmail.com',
-  },
-  {
-    name: 'Pradyumna',
-    role: 'Event Manager',
-    email: 'pradyumnabrhs3@gmail.com',
-  },
-  {
-    name: 'Trupthi Hosamani',
-    role: 'Outreach Director',
-    email: 'Trupthi3119@gmail.com',
-  },
-  {
-    name: 'Sai R',
-    role: 'Social Media Manager',
-    email: 'Thiruindusai@gmail.com',
-  },
-  {
-    name: 'Soumya Sonavani',
-    role: 'Social Media Manager',
-    email: 'sonavanisoumya27@gmail.com',
-  },
-  {
-    name: 'Sharannya Singh',
-    role: 'Faculty Director',
-    email: 'sharannya1900@gmail.com',
-  },
-]
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -122,7 +68,7 @@ export default function Contact() {
           </div>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Contact Form */}
           <AnimatedSection delay={0.1}>
             <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
@@ -222,27 +168,24 @@ export default function Contact() {
             </div>
           </AnimatedSection>
 
-          {/* Leadership Directory */}
+          {/* Contact Information */}
           <AnimatedSection delay={0.2}>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-display text-primary-green-light mb-6">
-                Leadership Directory
+            <div className="mt-8 bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
+                          border border-primary-green-medium/20 rounded-lg p-8 text-center">
+              <h2 className="text-2xl md:text-3xl font-display text-primary-green-light mb-4">
+                Contact Information
               </h2>
-              <p className="text-gray-300 mb-6 leading-relaxed">
-                Feel free to reach out directly to any member of our leadership team. 
-                Click on their email to send them a message.
+              <p className="text-gray-300 mb-4">
+                Reach out to us directly via email:
               </p>
-              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-                {leadership.map((member, index) => (
-                  <LeadershipCard
-                    key={member.email}
-                    name={member.name}
-                    role={member.role}
-                    email={member.email}
-                    delay={index * 0.05}
-                  />
-                ))}
-              </div>
+              <a
+                href="mailto:cltfutureyouth@gmail.com"
+                className="inline-flex items-center gap-3 text-primary-green-light hover:text-primary-green-medium 
+                         transition-colors duration-200 text-lg font-semibold"
+              >
+                <Mail className="w-6 h-6" />
+                cltfutureyouth@gmail.com
+              </a>
             </div>
           </AnimatedSection>
         </div>
