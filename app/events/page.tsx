@@ -80,7 +80,7 @@ export default function Events() {
                   to get involved with Future Youth CLT.
                 </p>
                 <a
-                  href="https://linktr.ee/futureyouthclt?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfWoWxWV_Pg2R_3JeQcjKU-OJG_xkbATDqB85t_CnW1KjquTg/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-8 py-4 bg-primary-green-medium hover:bg-primary-green-light 

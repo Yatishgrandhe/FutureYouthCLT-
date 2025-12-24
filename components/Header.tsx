@@ -42,7 +42,7 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href="https://linktr.ee/futureyouthclt?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfWoWxWV_Pg2R_3JeQcjKU-OJG_xkbATDqB85t_CnW1KjquTg/viewform"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 bg-primary-green-medium hover:bg-primary-green-light 
@@ -82,7 +82,7 @@ export default function Header() {
                 </Link>
               ))}
               <a
-                href="https://linktr.ee/futureyouthclt?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfWoWxWV_Pg2R_3JeQcjKU-OJG_xkbATDqB85t_CnW1KjquTg/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-primary-green-medium hover:bg-primary-green-light 

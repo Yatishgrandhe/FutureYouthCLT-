@@ -47,7 +47,7 @@ export default function Footer() {
           <div>
             <h3 className="text-primary-green-light font-semibold mb-4">Get Involved</h3>
             <a
-              href="https://linktr.ee/futureyouthclt?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfWoWxWV_Pg2R_3JeQcjKU-OJG_xkbATDqB85t_CnW1KjquTg/viewform"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-3 bg-primary-green-medium hover:bg-primary-green-light 
