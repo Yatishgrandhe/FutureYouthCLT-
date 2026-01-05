@@ -16,44 +16,30 @@ export default function About() {
           </div>
         </AnimatedSection>
 
-        {/* Mission Section */}
+        {/* Purpose Section */}
         <AnimatedSection delay={0.1}>
           <section className="max-w-4xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-display text-primary-green-light mb-6">
-              Our Mission
+              Purpose
             </h2>
             <div className="space-y-6">
               <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                Future Youth CLT is dedicated to creating a vibrant network of young leaders who are 
-                committed to making a positive impact in their communities. We believe in the power 
-                of connection, collaboration, and collective action to drive meaningful change.
-              </p>
-              <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-                Our mission is to empower the next generation by providing opportunities for personal 
-                growth, leadership development, and community engagement. We strive to create an 
-                inclusive environment where every young person can thrive and contribute to building 
-                a better future.
+                Our Purpose is to mobilize youth to take action and serve their community through handcrafted work. Every item we make goes directly towards supporting individuals and causes in need, ensuring our efforts always create a meaningful impact on our community.
               </p>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* Vision Section */}
+        {/* Why We Exist Section */}
         <AnimatedSection delay={0.2}>
           <section className="max-w-4xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-display text-primary-green-light mb-6">
-              Our Vision
+              Why We Exist
             </h2>
             <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
                           border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed mb-4">
-                We envision a future where young leaders are equipped with the skills, knowledge, and 
-                networks they need to create lasting positive change in their communities and beyond.
-              </p>
-              <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-                Through our network, we aim to foster a culture of innovation, empathy, and action 
-                that extends far beyond our immediate community, creating a ripple effect of positive 
-                impact across generations.
+              <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                We exist to support our community by turning compassion into action. Our mission is to provide meaningful help to those facing hardship. By organizing donation initiatives and community-driven efforts, we want to bring warmth and hope to individuals in need. Each month we donate to causes where support is needed most. Together, we believe small acts of kindness can create a lasting impact.
               </p>
             </div>
           </section>
