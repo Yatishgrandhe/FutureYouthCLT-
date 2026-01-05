@@ -96,7 +96,29 @@ export default function Events() {
                           {event.title}
                         </h3>
                         {event.description && (
-                          <p className="text-gray-300 mb-3">{event.description}</p>
+                          <div className="text-gray-300 mb-3 whitespace-pre-line">
+                            {event.description.split('\n').map((line, idx) => {
+                              if (line.startsWith('Meeting Slides:') || line.startsWith('http')) {
+                                const url = line.includes('http') ? line.match(/https?:\/\/[^\s]+/)?.[0] : null;
+                                if (url) {
+                                  return (
+                                    <div key={idx} className="mt-2">
+                                      <a
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary-green-light hover:text-primary-green-medium underline inline-flex items-center gap-2"
+                                      >
+                                        View Meeting Slides
+                                        <span className="text-xs">↗</span>
+                                      </a>
+                                    </div>
+                                  );
+                                }
+                              }
+                              return <p key={idx}>{line}</p>;
+                            })}
+                          </div>
                         )}
                         <div className="flex flex-wrap gap-4 text-sm text-gray-400">
                           {event.event_date && (
