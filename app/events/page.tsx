@@ -28,7 +28,7 @@ export default function Events() {
       const { data, error } = await supabase
         .from('events')
         .select('*')
-        .order('event_date', { ascending: true })
+        .order('event_date', { ascending: false })
 
       if (error) throw error
       setEvents(data || [])
@@ -38,6 +38,23 @@ export default function Events() {
       setLoading(false)
     }
   }
+
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  
+  const upcomingEvents = events.filter((event) => {
+    if (!event.event_date) return false
+    const eventDate = new Date(event.event_date)
+    eventDate.setHours(0, 0, 0, 0)
+    return eventDate >= today
+  })
+
+  const pastEvents = events.filter((event) => {
+    if (!event.event_date) return false
+    const eventDate = new Date(event.event_date)
+    eventDate.setHours(0, 0, 0, 0)
+    return eventDate < today
+  })
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
@@ -62,7 +79,7 @@ export default function Events() {
               <div className="text-center py-12">
                 <p className="text-gray-400">Loading events...</p>
               </div>
-            ) : events.length === 0 ? (
+            ) : upcomingEvents.length === 0 ? (
               <div className="max-w-4xl mx-auto">
                 <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
                               border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
@@ -83,7 +100,7 @@ export default function Events() {
               </div>
             ) : (
               <div className="max-w-4xl mx-auto space-y-4">
-                {events.map((event) => (
+                {upcomingEvents.map((event) => (
                   <div
                     key={event.id}
                     className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
@@ -157,20 +174,80 @@ export default function Events() {
             <h2 className="text-3xl md:text-4xl font-display text-primary-green-light mb-8 text-center">
               Past Events
             </h2>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
-                            border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
-                <div className="text-center py-12">
-                  <p className="text-gray-300 mb-4 leading-relaxed">
-                    As a newly established network in 2025, we're just getting started! 
-                    Our event history will grow as we continue to serve our community.
-                  </p>
-                  <p className="text-gray-400 text-sm">
-                    Check back here to see our event gallery as we host more activities.
-                  </p>
+            {pastEvents.length === 0 ? (
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
+                              border border-primary-green-medium/20 rounded-lg p-8 md:p-10">
+                  <div className="text-center py-12">
+                    <p className="text-gray-300 mb-4 leading-relaxed">
+                      As a newly established network in 2025, we're just getting started! 
+                      Our event history will grow as we continue to serve our community.
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                      Check back here to see our event gallery as we host more activities.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-w-4xl mx-auto space-y-4">
+                {pastEvents.map((event) => (
+                  <div
+                    key={event.id}
+                    className="bg-gradient-to-br from-primary-green-dark/10 to-primary-green-medium/10 
+                              border border-primary-green-medium/20 rounded-lg p-6 hover:border-primary-green-medium/50 
+                              transition-all opacity-75"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-semibold text-primary-green-light mb-2">
+                          {event.title}
+                        </h3>
+                        {event.description && (
+                          <div className="text-gray-300 mb-3 whitespace-pre-line">
+                            {event.description.split('\n').map((line, idx) => {
+                              if (line.startsWith('Meeting Slides:') || line.startsWith('http')) {
+                                const url = line.includes('http') ? line.match(/https?:\/\/[^\s]+/)?.[0] : null;
+                                if (url) {
+                                  return (
+                                    <div key={idx} className="mt-2">
+                                      <a
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary-green-light hover:text-primary-green-medium underline inline-flex items-center gap-2"
+                                      >
+                                        View Meeting Slides
+                                        <span className="text-xs">↗</span>
+                                      </a>
+                                    </div>
+                                  );
+                                }
+                              }
+                              return <p key={idx}>{line}</p>;
+                            })}
+                          </div>
+                        )}
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                          {event.event_date && (
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              {new Date(event.event_date).toLocaleDateString()}
+                            </div>
+                          )}
+                          {event.location && (
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4" />
+                              {event.location}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </section>
         </AnimatedSection>
 
